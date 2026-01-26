@@ -136,6 +136,11 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
+
+    maven {
+        name = "BlameJared Maven" // Waystones uses this
+        url = "https://maven.blamejared.com"
+    }
 }
 
 dependencies {
@@ -162,10 +167,12 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
 
-    // compile against the JEI API but do not include it at runtime
+    // compile against the API but do not include it at runtime
     compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
-    // at runtime, use the full JEI jar for Forge
+    compileOnly(fg.deobf("net.blay09.mods:waystones-forge:${waystones_version}"))
+    // at runtime, use the full mod jar for Forge
     runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))
+    runtimeOnly(fg.deobf("net.blay09.mods:waystones-forge:${waystones_version}"))
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
